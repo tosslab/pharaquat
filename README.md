@@ -2,8 +2,9 @@
 
 ## Requirements
 - php: >= 7.1
-- ext-json
-- ext-zlib
+- ext-curl: *
+- ext-json: *
+- ext-zlib: *
 
 ## Checking Version
 ```bash
@@ -18,20 +19,20 @@ require_once('/path/to/project/dist/pharaquat');
 ## Creating Client
 ```php
 $client = new Jandi\Client();
-$client->setEnv('development');
+$client->setEnv('production');
 ```
 
 ### Jandi\Client::setEnv()
 ```php
 Jandi\Client::setEnv(string $env): bool
 ```
-| Param | Type | Required | Available Values |
-| --- |:---:|:---:| --- | 
-| env | string | O | 'development', production' |
+| Param | Type | Required | Available Values | Default |
+| --- |:---:|:---:| --- | --- |
+| env | string | O | 'development', 'production' | 'development' |
 
 ## Getting Auth
 ```php
-$auth = $client->getAuthByPassword('onion.jeong@tosslab.com', 'password');
+$auth = $client->getAuthAsMember('onion.jeong@tosslab.com', 'password');
 if ($auth->isValid()) {
     echo 'auth succeeded', PHP_EOL;
 } else {
@@ -40,18 +41,18 @@ if ($auth->isValid()) {
 }
 ```
 
-### Jandi\Client::getAuthByPassword()
+### Jandi\Client::getAuthAsMember()
 ```php
-Jandi\Client::getAuthByPassword(string $username, string $password): Jandi\AuthInterface
+Jandi\Client::getAuthAsMember(string $username, string $password): Jandi\Auth\AuthInterface
 ```
 | Param | Type | Required | Example |
 | --- |:---:|:---:| --- | 
 | username | string | O | 'onion.jeong@tosslab.com' |
 | password | string | O | 'password' |
 
-### Jandi\AuthInterface::isValid()
+### Jandi\Auth\AuthInterface::isValid()
 ```php
-Jandi\AuthInterface::isValid(): bool
+Jandi\Auth\AuthInterface::isValid(): bool
 ```
 
 ## Creating Request
@@ -167,5 +168,6 @@ try {
 
 ## Todo
 - [ ] Docker Support
+- [ ] Jandi\Auth\Bot
 - [ ] Jandi\Request\Message
 - [ ] Jandi\Request\File
