@@ -31,8 +31,23 @@ Jandi\Client::setEnv(string $env): bool
 | env | string | O | 'development', 'production' | 'development' |
 
 ## Getting Auth
+
+### Getting Auth As Account
 ```php
-$auth = $client->getAuthAsMember('onion.jeong@tosslab.com', 'password');
+$auth = $client->getAuthAsAccount('onion.jeong@tosslab.com', 'password');
+```
+
+#### Jandi\Client::getAuthAsAccount()
+```php
+Jandi\Client::getAuthAsMember(string $username, string $password): Jandi\Auth\Account
+```
+| Param | Type | Required | Example |
+| --- |:---:|:---:| --- | 
+| username | string | O | 'onion.jeong@tosslab.com' |
+| password | string | O | 'password' |
+
+### Validating Auth
+```php
 if ($auth->isValid()) {
     echo 'auth succeeded', PHP_EOL;
 } else {
@@ -41,16 +56,7 @@ if ($auth->isValid()) {
 }
 ```
 
-### Jandi\Client::getAuthAsMember()
-```php
-Jandi\Client::getAuthAsMember(string $username, string $password): Jandi\Auth\AuthInterface
-```
-| Param | Type | Required | Example |
-| --- |:---:|:---:| --- | 
-| username | string | O | 'onion.jeong@tosslab.com' |
-| password | string | O | 'password' |
-
-### Jandi\Auth\AuthInterface::isValid()
+#### Jandi\Auth\AuthInterface::isValid()
 ```php
 Jandi\Auth\AuthInterface::isValid(): bool
 ```
@@ -167,6 +173,7 @@ try {
 ```
 
 ## Todo
+- [ ] Response Mutation
 - [ ] Docker Support
 - [ ] Jandi\Auth\Bot
 - [ ] Jandi\Request\Message

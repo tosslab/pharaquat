@@ -37,7 +37,7 @@ try {
     $client->setEnv($env);
 
     // get auth
-    $auth = $client->getAuthAsMember($username, $password);
+    $auth = $client->getAuthAsAccount($username, $password);
     if ($auth->isValid()) {
         echo 'auth succeeded', PHP_EOL;
     } else {
